@@ -1,0 +1,1127 @@
+{
+  "version": "1.0",
+  "quiz": "1SI-JAVA-DEBUG-CHALLENGE-01",
+  "mode": "CHALLENGE",
+  "questions": [
+    {
+      "id": "DGCQ001",
+      "topic": "Bucles",
+      "question": "¿Qué sucede finalmente con este bucle Java?",
+      "code": "int i = 0;\nwhile (i < 5) {\n    i--;\n}\nSystem.out.println(i);",
+      "options": [
+        "Imprime 5.",
+        "No compila.",
+        "Termina e imprime 2147483647 al desbordarse int.",
+        "Lanza una excepción por desbordamiento."
+      ],
+      "answer": 2,
+      "explanation": "Un int tiene 32 bits. Después de -2147483648, el decremento produce 2147483647; entonces i < 5 es falso. Tarda muchas iteraciones, pero no es infinito."
+    },
+    {
+      "id": "DGCQ002",
+      "topic": "Arrays",
+      "question": "¿Qué sucede al ejecutar este código?",
+      "code": "int[] numeros = {1, 2, 3};\nSystem.out.println(numeros[3]);",
+      "options": [
+        "Imprime 3 porque es el último número del array.",
+        "Se produce un error de compilación porque el índice 3 no existe.",
+        "Peta durante la ejecución al intentar acceder a una posición que no existe.",
+        "Entra en un bucle infinito intentando encontrar el número."
+      ],
+      "answer": 2,
+      "explanation": "Un array de tres elementos tiene índices 0, 1 y 2. El acceso a 3 compila, pero provoca ArrayIndexOutOfBoundsException."
+    },
+    {
+      "id": "DGCQ003",
+      "topic": "Bucles",
+      "question": "¿Qué efecto tiene el punto y coma después de while?",
+      "code": "int x = 0;\nwhile (x < 5);\n{\n    x++;\n    System.out.println(x);\n}",
+      "options": [
+        "Imprime los números del 1 al 5 y termina.",
+        "Se produce un error de compilación porque sobra un punto y coma.",
+        "Entra en un bucle infinito y nunca llega a ejecutar el bloque que imprime el número.",
+        "Peta durante la ejecución porque x supera el valor 5."
+      ],
+      "answer": 2,
+      "explanation": "El punto y coma es el cuerpo vacío del while. Como x no cambia y sigue siendo 0, el bucle no termina y el bloque posterior no se ejecuta."
+    },
+    {
+      "id": "DGCQ004",
+      "topic": "Sintaxis",
+      "question": "Tras importar java.util.Scanner, ¿qué línea crea un Scanner para leer el teclado?",
+      "code": "",
+      "options": [
+        "Scanner scanner = new Scanner(System.in);",
+        "Scaner scanner = new Scanner(System.in);",
+        "scanner scanner = new Scanner(System.in);",
+        "Scanner scanner = new Scaner (system.in);"
+      ],
+      "answer": 0,
+      "explanation": "Scanner y System empiezan con mayúscula. El constructor se llama Scanner y recibe System.in."
+    },
+    {
+      "id": "DGCQ005",
+      "topic": "Sintaxis",
+      "question": "¿Qué declaración guarda correctamente un carácter en el tipo primitivo char?",
+      "code": "",
+      "options": [
+        "char letra = 'a';",
+        "char letra = \"a\";",
+        "Char letra = 'a';",
+        "Char letra = \"a\";"
+      ],
+      "answer": 0,
+      "explanation": "char es el tipo primitivo y los caracteres se escriben entre comillas simples. Una cadena usa comillas dobles; Char no es el tipo estándar Character."
+    },
+    {
+      "id": "DGCQ006",
+      "topic": "Bucles",
+      "question": "¿Qué cabecera ejecuta su cuerpo exactamente cinco veces?",
+      "code": "",
+      "options": [
+        "for (int i = 0; i < 5; i++) { /* cuerpo */ }",
+        "for (int i = 0; i <= 5; i++) { /* cuerpo */ }",
+        "for (int i = 1; i < 5; i++) { /* cuerpo */ }",
+        "for (int i = 0; i < 5, i++) { /* cuerpo */ }"
+      ],
+      "answer": 0,
+      "explanation": "Los valores 0, 1, 2, 3 y 4 producen cinco iteraciones. <= 5 daría seis; empezar en 1 daría cuatro."
+    },
+    {
+      "id": "DGCQ007",
+      "topic": "Arrays",
+      "question": "¿Qué es un array en programación?",
+      "code": "",
+      "options": [
+        "Una estructura que permite almacenar varios elementos en una misma variable.",
+        "Un tipo de error de ejecución.",
+        "Una instrucción para repetir un programa.",
+        "Un dispositivo para almacenar archivos."
+      ],
+      "answer": 0,
+      "explanation": "Un array agrupa elementos de un mismo tipo y permite acceder a ellos mediante índices."
+    },
+    {
+      "id": "DGCQ008",
+      "topic": "Arrays",
+      "question": "¿Cuántos elementos contiene este array?",
+      "code": "int[] numeros = new int[6];",
+      "options": [
+        "5.",
+        "6.",
+        "7.",
+        "0."
+      ],
+      "answer": 1,
+      "explanation": "new int[6] reserva seis elementos. Sus índices válidos van de 0 a 5."
+    },
+    {
+      "id": "DGCQ009",
+      "topic": "Bucles",
+      "question": "¿Qué problema puede causar un bucle infinito?",
+      "code": "",
+      "options": [
+        "Que el programa termine antes de empezar.",
+        "Que el programa consuma muchos recursos y deje de responder.",
+        "Que todas las variables se conviertan en cadenas de texto.",
+        "Que el ordenador se conecte automáticamente a Internet."
+      ],
+      "answer": 1,
+      "explanation": "Un bucle que no termina puede mantener la CPU ocupada y bloquear la respuesta de un programa."
+    },
+    {
+      "id": "DGCQ010",
+      "topic": "Bucles",
+      "question": "Sin interrupciones externas, ¿por qué este bucle Java acaba terminando?",
+      "code": "int i = 0;\ndo {\n    i++;\n} while (i != 0);",
+      "options": [
+        "Porque nunca entra.",
+        "Porque i se detiene en 10.",
+        "Porque int acaba desbordándose y vuelve a 0.",
+        "Porque Java prohíbe do-while."
+      ],
+      "answer": 2,
+      "explanation": "Tras 2^32 incrementos, int vuelve a 0 y la condición i != 0 es falsa. No es un bucle infinito. Se ha omitido la impresión para centrarse en el contador."
+    },
+    {
+      "id": "DGCQ011",
+      "topic": "Sintaxis",
+      "question": "Este fragmento está dentro de main. ¿Qué ocurre con contador?",
+      "code": "int contador;\nfor (int i = 0; i < 10; i++) {\n    System.out.println(contador);\n    contador++;\n}",
+      "options": [
+        "Nada, no compila",
+        "Escribe contador 10 veces, del 1 al 10",
+        "Escribe contador 10 veces, del 0 al 9",
+        "Se genera un bucle infinito"
+      ],
+      "answer": 0,
+      "explanation": "Una variable local debe inicializarse antes de leer su valor. El primer println intenta usar contador sin asignación previa."
+    },
+    {
+      "id": "DGCQ012",
+      "topic": "Sintaxis",
+      "question": "Se ha importado Scanner. ¿Qué sucede con el código literal mostrado?",
+      "code": "int[] array = new int[5];\nfor (int i = 0; i < 5; i++) {\n    int num = 5\n    array[i] = num;\n}\nScanner scan = new Scanner(System.in);\nint pos = scan.nextInt();\nSystem.out.println(array[pos]);",
+      "options": [
+        "Aparece 5",
+        "No aparece nada porque está vacío el array",
+        "No aparece nada, hay error de compilación",
+        "Da error “Out of bounds”"
+      ],
+      "answer": 2,
+      "explanation": "Falta el punto y coma tras int num = 5. El programa no llega a ejecutarse; primero hay que corregir ese error de compilación."
+    },
+    {
+      "id": "DGCQ013",
+      "topic": "Sintaxis",
+      "question": "¿Qué tipo de error presenta esta asignación?",
+      "code": "int edad = \"20\";\nSystem.out.println(edad);",
+      "options": [
+        "Error de compilación",
+        "Error lógico",
+        "No contiene errores",
+        "Error en tiempo de ejecución"
+      ],
+      "answer": 0,
+      "explanation": "\"20\" es una cadena String y no se puede asignar directamente a una variable int. El compilador rechaza la conversión."
+    },
+    {
+      "id": "DGCQ014",
+      "topic": "Sintaxis",
+      "question": "¿Por qué no compila este programa?",
+      "code": "public class Main {\n    public static void main(String[] args) {\n        int numero = 10\n        System.out.println(numero);\n    }\n}",
+      "options": [
+        "Porque falta un punto y coma",
+        "Porque main no puede ser static",
+        "Porque println no admite enteros",
+        "Porque numero debe ser String"
+      ],
+      "answer": 0,
+      "explanation": "Una declaración como int numero = 10 debe terminar con punto y coma antes de la siguiente instrucción."
+    },
+    {
+      "id": "DGCQ015",
+      "topic": "Ejecución",
+      "question": "¿Qué excepción aparece al ejecutar esta división?",
+      "code": "int a = 10;\nint b = 0;\nSystem.out.println(a / b);",
+      "options": [
+        "NumberFormatException",
+        "Error de compilación",
+        "ArithmeticException",
+        "NullPointerException"
+      ],
+      "answer": 2,
+      "explanation": "La división entera entre cero provoca ArithmeticException en tiempo de ejecución. Las variables están declaradas correctamente."
+    },
+    {
+      "id": "DGCQ016",
+      "topic": "Arrays",
+      "question": "¿En qué orden se muestran los valores?",
+      "code": "int[] numeros = {4, 52, 4, 2};\nfor (int i = numeros.length - 1; i >= 0; i--) {\n    System.out.print(numeros[i] + \" \");\n}",
+      "options": [
+        "2 4 52 4",
+        "3 53 3 1",
+        "Error de compilación",
+        "4 52 4 2"
+      ],
+      "answer": 0,
+      "explanation": "El índice comienza en 3 y desciende hasta 0. Por eso los elementos se muestran en orden inverso."
+    },
+    {
+      "id": "DGCQ017",
+      "topic": "Matrices",
+      "question": "¿Qué condición recorre todas las columnas de la primera fila?",
+      "code": "int[][] numeros = new int[9][8];\nfor (int i = 0; /* condición */; i++) {\n    System.out.println(numeros[0][i]);\n}",
+      "options": [
+        "i < numeros.length(8)",
+        "i < numeros.length",
+        "i < numeros.length[0]",
+        "i < numeros[0].length"
+      ],
+      "answer": 3,
+      "explanation": "numeros.length vale 9 y cuenta filas. numeros[0].length vale 8 y cuenta las columnas de la primera fila."
+    },
+    {
+      "id": "DGCQ018",
+      "topic": "Sintaxis",
+      "question": "¿Qué impide que este fragmento compile?",
+      "code": "int[][] matriz = new int;\nint contador = 1;\nfor (int i = 0; i < matriz.length; i++) {\n    for (int j = 0; j < matriz[i].length; j++) {\n        matriz[i][j] = contador++;\n    }\n}\nSystem.out.println(matriz[1][2]);)",
+      "options": [
+        "Imprime 5.",
+        "Imprime 6.",
+        "Imprime 7.",
+        "La expresión new int no especifica dimensiones ni inicializador."
+      ],
+      "answer": 3,
+      "explanation": "Para crear la matriz se necesita, por ejemplo, new int[2][3]. El código original de la captura no llega a ejecutarse."
+    },
+    {
+      "id": "DGCQ019",
+      "topic": "Aleatoriedad",
+      "question": "Con java.util.Random importado, ¿qué declaración crea el objeto correctamente?",
+      "code": "",
+      "options": [
+        "random = new Random;",
+        "Random random = new Random;",
+        "Random random = new();",
+        "Random random = new Random();"
+      ],
+      "answer": 3,
+      "explanation": "La declaración correcta combina el tipo Random, el nombre de variable y new Random() con sus paréntesis."
+    },
+    {
+      "id": "DGCQ020",
+      "topic": "Matrices",
+      "question": "¿Qué imprime el acceso ROUND_CONFIG[2][0]?",
+      "code": "int[][] ROUND_CONFIG = {{2, 4}, {4, 6}, {6, 8}};\nSystem.out.println(ROUND_CONFIG[2][0]);",
+      "options": [
+        "8",
+        "4",
+        "2",
+        "6"
+      ],
+      "answer": 3,
+      "explanation": "El índice de fila 2 selecciona {6, 8}; su columna 0 contiene 6."
+    },
+    {
+      "id": "DGCQ021",
+      "topic": "Bucles",
+      "question": "¿Qué valor se imprime al final?",
+      "code": "int suma = 0;\nfor (int i = 1; i <= 10; i++) {\n    if (i % 2 == 0) {\n        continue;\n    }\n    if (i > 7) {\n        break;\n    }\n    suma += i;\n}\nSystem.out.println(suma);",
+      "options": [
+        "16",
+        "25",
+        "12",
+        "9"
+      ],
+      "answer": 0,
+      "explanation": "continue salta los pares. Se suman 1 + 3 + 5 + 7 = 16; cuando i vale 9, break termina el bucle antes de sumar."
+    },
+    {
+      "id": "DGCQ022",
+      "topic": "Ejecución",
+      "question": "En Java, ¿qué sucede al acceder a un índice inexistente de un array?",
+      "code": "",
+      "options": [
+        "Se crea automáticamente una posición.",
+        "Se lanza ArrayIndexOutOfBoundsException durante la ejecución.",
+        "El array se convierte en una matriz.",
+        "El programa siempre se reinicia."
+      ],
+      "answer": 1,
+      "explanation": "El tamaño del array no crece al leer un índice. Java comprueba sus límites durante la ejecución."
+    },
+    {
+      "id": "DGCQ023",
+      "topic": "Ejecución",
+      "question": "¿Cuál de estas situaciones representa un error lógico?",
+      "code": "",
+      "options": [
+        "El programa no se puede abrir.",
+        "Una calculadora resta dos números cuando debería sumarlos.",
+        "El ordenador se queda sin batería.",
+        "El archivo del programa se elimina."
+      ],
+      "answer": 1,
+      "explanation": "El programa se ejecuta, pero realiza una operación distinta a la requerida. No todo fallo es de sintaxis ni una excepción."
+    },
+    {
+      "id": "DGCQ024",
+      "topic": "Arrays",
+      "question": "¿Qué propiedad permite conocer la longitud de un array en Java?",
+      "code": "",
+      "options": [
+        "numeros.size()",
+        "numeros.count",
+        "numeros.length",
+        "numeros.length()"
+      ],
+      "answer": 2,
+      "explanation": "Los arrays tienen el campo length, sin paréntesis. size() corresponde a otras estructuras, como algunas colecciones."
+    },
+    {
+      "id": "DGCQ025",
+      "topic": "Bucles",
+      "question": "¿Qué palabra reservada sale de forma inmediata del bucle más cercano?",
+      "code": "",
+      "options": [
+        "continue",
+        "exit",
+        "break",
+        "stop"
+      ],
+      "answer": 2,
+      "explanation": "break termina el bucle. continue salta el resto de la iteración actual y continúa con la siguiente."
+    },
+    {
+      "id": "DGCQ026",
+      "topic": "Aleatoriedad",
+      "question": "Al terminar el do-while, ¿qué había en la casilla elegida justo antes de escribir X?",
+      "code": "// tablero 10×10 inicializado y con alguna casilla libre\n// rn es un objeto Random; ranFil y ranCol son int\ndo {\n    ranFil = rn.nextInt(10);\n    ranCol = rn.nextInt(10);\n} while (tablero[ranFil][ranCol] != '*');\ntablero[ranFil][ranCol] = 'X';",
+      "options": [
+        "Contenía 'X'.",
+        "Contenía '*'.",
+        "Cualquier carácter excepto '*'.",
+        "Estaba vacía o con valor null."
+      ],
+      "answer": 1,
+      "explanation": "El bucle se repite mientras el contenido sea distinto de *. Solo sale cuando encuentra una casilla con *. Se presupone que hay al menos una libre."
+    },
+    {
+      "id": "DGCQ027",
+      "topic": "Ejecución",
+      "question": "¿Qué sucede al recorrer esta matriz con <=?",
+      "code": "int[][] matriz = new int[10][10];\nfor (int i = 0; i <= matriz.length; i++) {\n    for (int j = 0; j <= matriz[i].length; j++) {\n        matriz[i][j] = 0;\n    }\n}",
+      "options": [
+        "Da un error de compilación, porque el compilador detecta que el índice 10 supera el tamaño del array.",
+        "Da un error de ejecución, porque el programa falla al intentar acceder a la posición 10.",
+        "El programa compila y se ejecuta con éxito, inicializando las 100 posiciones con el valor 0.",
+        "El programa no compila porque falta declarar explícitamente el tamaño de las columnas."
+      ],
+      "answer": 1,
+      "explanation": "El índice 10 está fuera de las columnas 0..9. La primera excepción se produce con i = 0 y j = 10. Para recorrer todos los elementos se usa <."
+    },
+    {
+      "id": "DGCQ028",
+      "topic": "Sintaxis",
+      "question": "¿Qué tipo de error ocurre cuando el código Java incumple las reglas de sintaxis?",
+      "code": "",
+      "options": [
+        "Error de compilación",
+        "Error de conexión",
+        "Error de diseño",
+        "Error de impresión"
+      ],
+      "answer": 0,
+      "explanation": "El compilador analiza la sintaxis antes de ejecutar el programa y rechaza las construcciones inválidas."
+    },
+    {
+      "id": "DGCQ029",
+      "topic": "Ejecución",
+      "question": "Yoda está en (0,0). Si W resta una fila y se ejecuta este acceso sin validar límites, ¿qué ocurre?",
+      "code": "char[][] tablero = new char[10][10];\nint fila = 0;\nint columna = 0;\nint nuevaFila = fila - 1;\ntablero[nuevaFila][columna] = 'Y';",
+      "options": [
+        "Yoda aparece en la última fila.",
+        "Se lanza ArrayIndexOutOfBoundsException.",
+        "Yoda se queda quieto automáticamente.",
+        "Java permite guardar fuera de la matriz."
+      ],
+      "answer": 1,
+      "explanation": "nuevaFila vale -1. El índice negativo no existe. Para impedirlo, el programa debe comprobar los límites antes de acceder al tablero."
+    },
+    {
+      "id": "DGCQ030",
+      "topic": "Bucles",
+      "question": "¿Para qué se utiliza un bucle while?",
+      "code": "",
+      "options": [
+        "Para repetir un proceso mientras la condición sea válida",
+        "Para definir una matriz",
+        "Que se termina el programa",
+        "Para que el programa no termine en caso de error"
+      ],
+      "answer": 0,
+      "explanation": "while repite su cuerpo mientras una condición booleana sea verdadera. Si es falsa desde el inicio, no entra."
+    },
+    {
+      "id": "DGCQ031",
+      "topic": "Matrices",
+      "question": "¿Qué fragmento llena correctamente todas las casillas con +?",
+      "code": "char[][] array = new char[3][4];",
+      "options": [
+        "for (int f = 0; f < array.length; f++) {\n    for (int c = 0; c < array[f].length; c++) {\n        array[f][c] = '+';\n    }\n}",
+        "array = '+';",
+        "for (int f = 0; f <= array.length; f++) {\n    array[f][0] = '+';\n}",
+        "for (int f = 0; f < array.length; f++) {\n    array[0][0] = '+';\n}"
+      ],
+      "answer": 0,
+      "explanation": "El bucle exterior recorre las filas y el interior las columnas de cada fila. Se asigna el carácter a array[f][c] dentro de ambos."
+    },
+    {
+      "id": "DGCQ032",
+      "topic": "Aleatoriedad",
+      "question": "Con el import al principio del archivo, ¿qué línea crea un generador aleatorio?",
+      "code": "import java.util.Random;",
+      "options": [
+        "int aleatorio = random;",
+        "Random aleatorio = new Random();",
+        "Random aleatorio = New Random();",
+        "Random = aleatorio;"
+      ],
+      "answer": 1,
+      "explanation": "Java distingue mayúsculas y minúsculas: la palabra reservada es new. Random es el tipo y aleatorio el nombre de la variable."
+    },
+    {
+      "id": "DGCQ033",
+      "topic": "Ejecución",
+      "question": "¿Cuál de estos accesos provoca una excepción en tiempo de ejecución?",
+      "code": "char[][] array = new char[5][3];",
+      "options": [
+        "array[4][2] = 'A';",
+        "array[0][0] = 'X';",
+        "array[2][1] = 'V';",
+        "array[5][3] = 'V';"
+      ],
+      "answer": 3,
+      "explanation": "Los índices válidos de fila son 0..4 y los de columna 0..2. El acceso [5][3] está fuera de rango."
+    },
+    {
+      "id": "DGCQ034",
+      "topic": "Arrays",
+      "question": "¿Cuántas posiciones contienen P después del bucle?",
+      "code": "char[] letras = new char[5];\nfor (int fila = 0; fila < letras.length; fila++) {\n    letras[fila] = 'P';\n}",
+      "options": [
+        "5",
+        "6",
+        "4",
+        "1"
+      ],
+      "answer": 0,
+      "explanation": "El bucle visita los índices 0, 1, 2, 3 y 4: cinco posiciones."
+    },
+    {
+      "id": "DGCQ035",
+      "topic": "Bucles",
+      "question": "¿Por qué este bucle imprime 0 sin terminar?",
+      "code": "int i = 0;\nwhile (i < 5) {\n    System.out.println(i);\n}",
+      "options": [
+        "“i” no aumenta",
+        "se muestra el 5",
+        "no se ejecuta",
+        "se muestran numeros del 1 al 5"
+      ],
+      "answer": 0,
+      "explanation": "i comienza en 0 y nunca cambia. La condición i < 5 sigue siendo verdadera en todas las vueltas."
+    },
+    {
+      "id": "DGCQ036",
+      "topic": "Ejecución",
+      "question": "¿Qué sucede al intentar colocar el robot?",
+      "code": "char[][] matriz = new char[10][10];\nchar ROBOT = 'R';\nmatriz[10][10] = ROBOT;",
+      "options": [
+        "Se coloca R en la primera casilla.",
+        "Se coloca R en la última casilla.",
+        "Se coloca R en una casilla aleatoria.",
+        "Se lanza ArrayIndexOutOfBoundsException."
+      ],
+      "answer": 3,
+      "explanation": "La última casilla de una matriz 10×10 es [9][9]. El acceso [10][10] está fuera de sus límites."
+    },
+    {
+      "id": "DGCQ037",
+      "topic": "Matrices",
+      "question": "La matriz 10×10 ya está llena de *. ¿Por qué sus caracteres se muestran uno debajo de otro?",
+      "code": "for (int fila = 0; fila < matriz.length; fila++) {\n    for (int columna = 0; columna < matriz[fila].length; columna++) {\n        System.out.println(matriz[fila][columna] + \" \");\n    }\n    System.out.println();\n}",
+      "options": [
+        "El println interior añade un salto después de cada carácter.",
+        "Falta un incremento en fila.",
+        "No se permite usar length en for.",
+        "Una matriz solo se puede mostrar en una columna."
+      ],
+      "answer": 0,
+      "explanation": "Dentro de las columnas debe usarse print si se quiere mantener la fila. El println al terminar el bucle interior pasa a la siguiente fila."
+    },
+    {
+      "id": "DGCQ038",
+      "topic": "Aleatoriedad",
+      "question": "El tablero está inicializado. ¿Cuántas casillas modifica este fragmento y cómo las elige?",
+      "code": "char BATERIA = 'B';\nRandom aleatorio = new Random();\nint fila = aleatorio.nextInt(10);\nint columna = aleatorio.nextInt(10);\nmatriz[fila][columna] = BATERIA;",
+      "options": [
+        "Ninguna, no compila con Random importado.",
+        "Una, siempre la primera.",
+        "Una, elegida aleatoriamente.",
+        "Una, siempre la última."
+      ],
+      "answer": 2,
+      "explanation": "Se ejecuta una sola asignación. nextInt(10) genera cada coordenada entre 0 y 9. El fragmento modifica la matriz; no la imprime."
+    },
+    {
+      "id": "DGCQ039",
+      "topic": "Ejecución",
+      "question": "¿Por qué falla esta asignación?",
+      "code": "char[][] matriz = new char[10][10];\nmatriz[10][10] = 'M';",
+      "options": [
+        "Porque M no es un carácter válido.",
+        "Porque los índices 10 están fuera de 0..9.",
+        "Porque toda matriz debe ser int.",
+        "Porque las matrices Java no permiten asignaciones."
+      ],
+      "answer": 1,
+      "explanation": "La matriz está creada y M es un char válido. El problema son los índices de la posición elegida."
+    },
+    {
+      "id": "DGCQ040",
+      "topic": "Bucles",
+      "question": "¿Qué es un bucle infinito?",
+      "code": "",
+      "options": [
+        "Un bucle que se ejecuta una sola vez.",
+        "Un bucle que nunca llega a ejecutarse.",
+        "Un bucle que se repite indefinidamente porque no se cumple su condición de salida.",
+        "Un bucle que siempre produce un error de sintaxis."
+      ],
+      "answer": 2,
+      "explanation": "Su condición de salida no llega a cumplirse y las iteraciones continúan indefinidamente, salvo una interrupción externa."
+    },
+    {
+      "id": "DGCQ041",
+      "topic": "Arrays",
+      "question": "¿Qué número aparece en pantalla?",
+      "code": "int[] numeros = {2, 4, 6, 8};\nSystem.out.println(numeros[1]);",
+      "options": [
+        "2",
+        "4",
+        "6",
+        "8"
+      ],
+      "answer": 1,
+      "explanation": "El índice 1 corresponde al segundo elemento: 4. Los índices del array empiezan en cero."
+    },
+    {
+      "id": "DGCQ042",
+      "topic": "Matrices",
+      "question": "Una matriz rectangular tiene 3 filas y 4 columnas. ¿Cuántos elementos almacena?",
+      "code": "",
+      "options": [
+        "7.",
+        "12.",
+        "9.",
+        "4."
+      ],
+      "answer": 1,
+      "explanation": "Cada una de las tres filas contiene cuatro columnas: 3 × 4 = 12 elementos."
+    },
+    {
+      "id": "DGCQ043",
+      "topic": "Bucles",
+      "question": "¿Qué diferencia hay entre while y do-while?",
+      "code": "",
+      "options": [
+        "Son idénticos en todos los casos.",
+        "Solo cambia cómo se escriben.",
+        "while comprueba antes del cuerpo; do-while, después.",
+        "Los dos ejecutan siempre el cuerpo al menos una vez."
+      ],
+      "answer": 2,
+      "explanation": "do-while ejecuta su cuerpo al menos una vez. while puede no ejecutarlo si la condición inicial es falsa."
+    },
+    {
+      "id": "DGCQ044",
+      "topic": "Bucles",
+      "question": "¿Qué sucede con este bucle?",
+      "code": "while (true) {\n    System.out.println(\"Hola\");\n}",
+      "options": [
+        "Solo imprime “Hola”",
+        "Se genera un bucle infinito",
+        "Se imprimiera unas veces y luego parará",
+        "el código para cuando sea falso"
+      ],
+      "answer": 1,
+      "explanation": "La condición true no cambia y no hay break ni otra salida en el cuerpo; imprime Hola de forma indefinida."
+    },
+    {
+      "id": "DGCQ045",
+      "topic": "Bucles",
+      "question": "¿Qué valores se imprimen?",
+      "code": "int numero = 1;\nwhile (numero < 4) {\n    System.out.println(numero);\n    numero++;\n}",
+      "options": [
+        "Es un bucle infinito",
+        "Imprime los números 1,2,3 y 4",
+        "No se ejecuta",
+        "Imprime los números 1,2 y 3"
+      ],
+      "answer": 3,
+      "explanation": "Se imprime con numero = 1, 2 y 3. Tras incrementarse a 4, la condición numero < 4 deja de cumplirse."
+    },
+    {
+      "id": "DGCQ046",
+      "topic": "Aleatoriedad",
+      "question": "Hay casillas libres y random es un Random. ¿Cuántas B coloca este fragmento?",
+      "code": "do {\n    fila = random.nextInt(10);\n    columna = random.nextInt(10);\n} while (matriz[fila][columna] != '*');\nmatriz[fila][columna] = 'B';",
+      "options": [
+        "10",
+        "1",
+        "Las que indique el usuario.",
+        "No coloca ninguna."
+      ],
+      "answer": 1,
+      "explanation": "El do-while busca una casilla libre. La asignación está fuera del bucle y se ejecuta una sola vez; modifica la matriz sin imprimirla."
+    },
+    {
+      "id": "DGCQ047",
+      "topic": "Matrices",
+      "question": "matriz es char[10][10]. ¿Qué hace este código?",
+      "code": "for (int filas = 0; filas < 10; filas++) {\n    for (int columnas = 0; columnas < 10; columnas++) {\n        matriz[filas][columnas] = '*';\n    }\n}",
+      "options": [
+        "Imprime la matriz.",
+        "Rellena todas las casillas con *.",
+        "Pide caracteres al usuario.",
+        "Solo cambia la primera casilla."
+      ],
+      "answer": 1,
+      "explanation": "La asignación dentro de los dos bucles escribe * en las 100 casillas. No hay ninguna llamada para imprimir."
+    },
+    {
+      "id": "DGCQ048",
+      "topic": "Matrices",
+      "question": "¿Dónde se coloca R en esta matriz?",
+      "code": "char[][] matriz = new char[10][10];\nchar ROBOT = 'R';\nmatriz[0][0] = ROBOT;",
+      "options": [
+        "Fuera de la matriz.",
+        "En la primera fila y la primera columna.",
+        "Donde indique el usuario.",
+        "En la última fila y columna."
+      ],
+      "answer": 1,
+      "explanation": "[0][0] es la primera casilla. La matriz está creada antes de asignar el carácter."
+    },
+    {
+      "id": "DGCQ049",
+      "topic": "Matrices",
+      "question": "matriz es char[10][10] llena de *. ¿Qué imprime este fragmento?",
+      "code": "for (int i = 0; i < matriz.length; i++) {\n    for (int j = 0; j < matriz[i].length; j++) {\n        System.out.print(matriz);\n    }\n    System.out.println();\n}",
+      "options": [
+        "Un * por línea.",
+        "La cuadrícula de caracteres *.",
+        "Una representación del objeto, como [[C@..., repetida.",
+        "El número 100."
+      ],
+      "answer": 2,
+      "explanation": "matriz es un array de arrays y se imprime su representación de objeto. Para mostrar cada carácter hay que usar matriz[i][j]. La parte posterior a @ puede variar."
+    },
+    {
+      "id": "DGCQ050",
+      "topic": "Ejecución",
+      "question": "En una matriz 10×10, ¿qué acceso corrige los índices de la última casilla?",
+      "code": "char[][] matriz = new char[10][10];\nSystem.out.println(matriz[10][10]);",
+      "options": [
+        "matriz[9][9]",
+        "matriz[10][9]",
+        "matriz[9][10]",
+        "matriz[10][10]"
+      ],
+      "answer": 0,
+      "explanation": "Los dos índices deben estar entre 0 y 9. Cambiar solo uno no basta: ambos 10 del acceso original están fuera de rango."
+    },
+    {
+      "id": "DGCQ051",
+      "topic": "Ejecución",
+      "question": "¿Qué sucede al ejecutar este recorrido?",
+      "code": "int[][] matriz = new int[10][10];\nfor (int i = 0; i < matriz.length; i++) {\n    for (int j = 0; j < matriz[i].length; i++) {\n        matriz[i][j] = 1;\n    }\n}",
+      "options": [
+        "El programa permanece siempre en un bucle infinito.",
+        "Se rellena correctamente toda la matriz.",
+        "Se lanza ArrayIndexOutOfBoundsException al aumentar i dentro del bucle interior.",
+        "No compila porque i está declarado dos veces."
+      ],
+      "answer": 2,
+      "explanation": "El bucle interior incrementa i y mantiene j en 0. Cuando i llega a 10, la condición intenta consultar matriz[10].length y se produce la excepción."
+    },
+    {
+      "id": "DGCQ052",
+      "topic": "Sintaxis",
+      "question": "¿Por qué no compila la condición de este if?",
+      "code": "int vidas = 10;\nif (vidas = 0) {\n    System.out.println(\"Juego terminado\");\n}",
+      "options": [
+        "Compila y muestra “Juego terminado”.",
+        "Compila, pero no muestra ningún resultado.",
+        "Da un error de compilación porque vidas = 0 no es una condición, hace falta poner ==",
+        "Da un error de ejecución porque las vidas no pueden ser 0."
+      ],
+      "answer": 2,
+      "explanation": "vidas = 0 asigna un int. if exige un boolean. La comparación vidas == 0 sí produce un boolean."
+    },
+    {
+      "id": "DGCQ053",
+      "topic": "Ejecución",
+      "question": "¿Qué sucede al intentar leer la última posición de esta manera?",
+      "code": "int[] numeros = new int[5];\nSystem.out.println(numeros[5]);",
+      "options": [
+        "Muestra 0 porque java inicializa los enteros en 0.",
+        "Da un error de compilación porque el array solo tiene cinco posiciones.",
+        "Da una excepción “ArrayIndexOutOfBoundsException” al ejecutarse.",
+        "Muestra el valor de la última posición."
+      ],
+      "answer": 2,
+      "explanation": "El array tiene cinco elementos, con índices 0..4. numeros[5] intenta acceder a una sexta posición inexistente."
+    },
+    {
+      "id": "DGCQ054",
+      "topic": "Bucles",
+      "question": "¿Qué sucede cuando vidas llega a 1?",
+      "code": "int vidas = 3;\nwhile (vidas > 0) {\n    System.out.println(\"El robot sigue jugando\");\n    if (vidas == 1) {\n        continue;\n    }\n    vidas--;\n}",
+      "options": [
+        "El bucle termina cuando vidas llega a 0.",
+        "El programa muestra el mensaje tres veces y termina.",
+        "Cuando vidas llega a 1, se queda en un bucle infinito.",
+        "Da un error de compilación por el continue."
+      ],
+      "answer": 2,
+      "explanation": "continue salta el decremento vidas--. Cuando vidas es 1, se repite ese salto y la condición vidas > 0 nunca cambia a falsa."
+    },
+    {
+      "id": "DGCQ055",
+      "topic": "Aleatoriedad",
+      "question": "¿Para qué sirve el do-while al colocar B o X?",
+      "code": "// matriz 10×10 con al menos una casilla libre\n// aleatorio es un Random y f, c son int\ndo {\n    f = aleatorio.nextInt(10);\n    c = aleatorio.nextInt(10);\n} while (matriz[f][c] != '*');\nmatriz[f][c] = 'B';",
+      "options": [
+        "Garantizar que los elementos solo se coloquen en casillas con '*'.",
+        "El robot comienza el juego con dos casillas de distancia de las trampas.",
+        "Volver a generar un número aleatorio hasta que este sea positivo.",
+        "Comprobar que los elementos no queden colocados fuera del tablero."
+      ],
+      "answer": 0,
+      "explanation": "La condición rechaza casillas ocupadas y repite el sorteo hasta encontrar *. Se presupone que queda una casilla libre."
+    },
+    {
+      "id": "DGCQ056",
+      "topic": "Matrices",
+      "question": "¿Qué acceso selecciona la última casilla?",
+      "code": "int[][] numeros = new int[3][4];",
+      "options": [
+        "numeros[3][4]",
+        "numeros[2][4]",
+        "numeros[3][3]",
+        "numeros[2][3]"
+      ],
+      "answer": 3,
+      "explanation": "En tres filas los índices son 0..2, y en cuatro columnas son 0..3. La última posición es numeros[2][3]."
+    },
+    {
+      "id": "DGCQ057",
+      "topic": "Bucles",
+      "question": "Tras introducir -1, -3, 5 y 8, ¿qué hace este programa?",
+      "code": "Scanner sc = new Scanner(System.in);\nint contador = 0;\nwhile (contador < 3) {\n    int num = sc.nextInt();\n    if (num < 0) {\n        continue;\n    }\n    contador++;\n}",
+      "options": [
+        "Termina al leer -1.",
+        "Termina al leer 8.",
+        "Es necesariamente infinito aunque se introduzcan más positivos.",
+        "Espera otro número no negativo porque contador vale 2."
+      ],
+      "answer": 3,
+      "explanation": "Los negativos ejecutan continue y no aumentan el contador. 5 y 8 cuentan dos; falta un tercer número no negativo."
+    },
+    {
+      "id": "DGCQ058",
+      "topic": "Ejecución",
+      "question": "¿Qué sucede en la última línea?",
+      "code": "int[] arreglo = new int[120];\nfor (int i = 0; i < 120; i++) {\n    arreglo[i] = i;\n}\nSystem.out.println(arreglo[arreglo.length]);",
+      "options": [
+        "120",
+        "119",
+        "ArrayIndexOutOfBoundsException",
+        "[I@e9e54c2"
+      ],
+      "answer": 2,
+      "explanation": "arreglo.length vale 120, pero el último índice válido es 119. Se lanza una excepción en lugar de imprimir un elemento."
+    },
+    {
+      "id": "DGCQ059",
+      "topic": "Bucles",
+      "question": "¿Qué llega a mostrar System.out.print(value)?",
+      "code": "int value = 0;\nfor (int i = 0; i < 5; i++) {\n    i = 0;\n    value = i;\n}\nSystem.out.print(value);",
+      "options": [
+        "0 una vez.",
+        "00000.",
+        "Nada: el bucle no termina y no se alcanza print.",
+        "El texto Idempotent loop body."
+      ],
+      "answer": 2,
+      "explanation": "En cada vuelta i se pone a 0; la actualización del for lo lleva a 1. Nunca alcanza 5, así que no llega a la impresión posterior."
+    },
+    {
+      "id": "DGCQ060",
+      "topic": "Sintaxis",
+      "question": "Suponiendo que no existe ninguna variable x declarada, ¿qué ocurre?",
+      "code": "char[] letras = new char[5];\nfor (int i = 0; i < 5; i++) {\n    letras[i] = x;\n    System.out.print(letras[i]);\n}",
+      "options": [
+        "xxxxx",
+        "cannot find symbol",
+        "ArrayIndexOutOfBoundsException",
+        "NullPointerException"
+      ],
+      "answer": 1,
+      "explanation": "x sin comillas se interpreta como un identificador. Al no estar declarado, el compilador indica cannot find symbol. Para un carácter sería 'x'."
+    },
+    {
+      "id": "DGCQ061",
+      "topic": "Matrices",
+      "question": "matriz[posicion] es una fila válida y no nula. ¿Cómo se obtiene su número de columnas?",
+      "code": "",
+      "options": [
+        "matriz.length[posicion]",
+        "matriz.posicion[length]",
+        "matriz[posicion].length",
+        "length[posicion].length"
+      ],
+      "answer": 2,
+      "explanation": "matriz[posicion] selecciona la fila y .length da el número de elementos de esa fila."
+    },
+    {
+      "id": "DGCQ062",
+      "topic": "Aleatoriedad",
+      "question": "rand es un Random. ¿Qué línea genera un int entre 0 y 9?",
+      "code": "",
+      "options": [
+        "int numero = rand.nextInt(10);",
+        "int numero = Random * 10;",
+        "int numero = (int) (Math.Random * 11);",
+        "int numero = int.random(10);"
+      ],
+      "answer": 0,
+      "explanation": "nextInt(10) devuelve un int entre 0 incluido y 10 excluido. Las otras expresiones no son llamadas válidas en este contexto."
+    },
+    {
+      "id": "DGCQ063",
+      "topic": "Matrices",
+      "question": "¿Cuál es el valor impreso?",
+      "code": "int[][] matriz = {{4, 7}, {1, 3, 5}, {8}};\nint[] fila = matriz[1];\nfila[0] = matriz[0].length + matriz.length;\nSystem.out.println(matriz[1][0] + matriz[1].length + matriz[2].length);",
+      "options": [
+        "6",
+        "8",
+        "9",
+        "10"
+      ],
+      "answer": 2,
+      "explanation": "fila referencia matriz[1]. Se asigna 2 + 3 = 5 a su primera casilla; la impresión suma 5 + 3 + 1 = 9."
+    },
+    {
+      "id": "DGCQ064",
+      "topic": "Sintaxis",
+      "question": "¿Qué tipo de error presenta esta instrucción incompleta?",
+      "code": "System.out.println(\"Hola\"",
+      "options": [
+        "Error de compilación",
+        "Error de ejecución",
+        "Bucle infinito",
+        "El programa funciona correcta"
+      ],
+      "answer": 0,
+      "explanation": "Faltan el cierre del paréntesis y el punto y coma. La instrucción no cumple la sintaxis de Java."
+    },
+    {
+      "id": "DGCQ065",
+      "topic": "Ejecución",
+      "question": "¿Qué tipo de error aparece al ejecutar la segunda línea?",
+      "code": "char[][] matriz = new char[10][10];\nSystem.out.println(matriz[10][10]);",
+      "options": [
+        "Error de compilación",
+        "Error de ejecución",
+        "Bucle infinito",
+        "El programa muestra un asterisco"
+      ],
+      "answer": 1,
+      "explanation": "Los índices válidos de la matriz son 0..9. [10][10] produce ArrayIndexOutOfBoundsException durante la ejecución."
+    },
+    {
+      "id": "DGCQ066",
+      "topic": "Bucles",
+      "question": "¿Qué sucede con este bucle?",
+      "code": "int vidas = 9;\nwhile (vidas > 0) {\n    System.out.println(vidas);\n}",
+      "options": [
+        "Error de compilación",
+        "Error de ejecución",
+        "Bucle infinito",
+        "El programa termina cuando las vidas llegan a cero."
+      ],
+      "answer": 2,
+      "explanation": "vidas siempre vale 9 porque el cuerpo solo imprime. La condición vidas > 0 permanece verdadera."
+    },
+    {
+      "id": "DGCQ067",
+      "topic": "Ejecución",
+      "question": "Homer está en [1][9]. ¿Qué ocurre al copiarlo una casilla a la derecha sin validar límites?",
+      "code": "char[][] tablero = new char[10][10];\nint fila = 1;\nint columna = 9;\ntablero[fila][columna] = 'H';\ntablero[fila][columna + 1] = 'H';",
+      "options": [
+        "Se guarda en una nueva columna 10.",
+        "Se lanza ArrayIndexOutOfBoundsException.",
+        "El lenguaje lo deja quieto automáticamente.",
+        "Se imprime fuera de la matriz."
+      ],
+      "answer": 1,
+      "explanation": "La columna 9 es la última válida. columna + 1 vale 10 y no existe. El programa debe validar los límites antes de mover."
+    },
+    {
+      "id": "DGCQ068",
+      "topic": "Sintaxis",
+      "question": "¿Qué pasa si escribimos matriz length como expresión?",
+      "code": "int[][] matriz = new int[3][4];\nSystem.out.println(matriz length);",
+      "options": [
+        "Imprime el número de filas.",
+        "Da un error de compilación porque falta el punto entre matriz y length.",
+        "Imprime cero.",
+        "Crea una nueva matriz."
+      ],
+      "answer": 1,
+      "explanation": "El acceso al campo se escribe matriz.length. Dos identificadores separados por un espacio no forman una expresión válida."
+    },
+    {
+      "id": "DGCQ069",
+      "topic": "Aleatoriedad",
+      "question": "Con Random importado, ¿qué declaración crea un objeto llamado nombre?",
+      "code": "",
+      "options": [
+        "Random nombre = new Random();",
+        "random nombre = nombre.nextInt();",
+        "random nombre = new Random();",
+        "Random nombre = nombre.nextInt();"
+      ],
+      "answer": 0,
+      "explanation": "El tipo y el constructor se llaman Random. nextInt() devuelve un número, no un objeto Random."
+    },
+    {
+      "id": "DGCQ070",
+      "topic": "Sintaxis",
+      "question": "¿Cuál de estos comienzos tiene una firma main válida en Java?",
+      "code": "",
+      "options": [
+        "public class Main {\n    public static main void (string[] args) {",
+        "public class Main {\n    public static void main (string[] args {",
+        "public static void main (string[] args {\n    public class Main {",
+        "Ninguno de los tres."
+      ],
+      "answer": 3,
+      "explanation": "La firma habitual es public static void main(String[] args). String lleva S mayúscula, el orden es void main y hay que cerrar el paréntesis."
+    },
+    {
+      "id": "DGCQ071",
+      "topic": "Arrays",
+      "question": "datos no es null. ¿Qué bucle recorre sus elementos desde el último hasta el primero?",
+      "code": "",
+      "options": [
+        "for (int i = datos.length + 1; i >= 0; i--) { System.out.println(datos[i]); }",
+        "for (int i = datos.length - 1; i <= 0; i--) { System.out.println(datos[i]); }",
+        "for (int i = datos.length - 1; i >= 0; i--) { System.out.println(datos[i]); }",
+        "Ninguno de los anteriores."
+      ],
+      "answer": 2,
+      "explanation": "El último índice válido es length - 1. Después se disminuye hasta incluir el índice 0."
+    },
+    {
+      "id": "DGCQ072",
+      "topic": "Matrices",
+      "question": "¿Qué ocurre al copiar la unidad a la derecha sin borrar su casilla anterior?",
+      "code": "char[][] tablero = new char[10][10];\ntablero[2][2] = 'R';\ntablero[2][3] = tablero[2][2];",
+      "options": [
+        "La casilla anterior se borra sola.",
+        "Queda R en ambas casillas.",
+        "No se modifica ninguna casilla.",
+        "La matriz cambia de tamaño."
+      ],
+      "answer": 1,
+      "explanation": "Una asignación copia el valor, pero no borra la posición de origen. Para un movimiento hay que actualizar también la casilla anterior."
+    },
+    {
+      "id": "DGCQ073",
+      "topic": "Ejecución",
+      "question": "¿Qué sucede al leer length sobre esta referencia?",
+      "code": "int[][] matriz = null;\nSystem.out.println(matriz.length);",
+      "options": [
+        "Se lanza NullPointerException.",
+        "Se produce un bucle infinito.",
+        "Imprime 10.",
+        "Imprime 0."
+      ],
+      "answer": 0,
+      "explanation": "Declarar la referencia y asignarle null no crea una matriz. Acceder a su campo length produce NullPointerException."
+    },
+    {
+      "id": "DGCQ074",
+      "topic": "Bucles",
+      "question": "¿Qué imprime este programa con dos do-while consecutivos?",
+      "code": "int a = 0;\ndo {\n    System.out.print(\"A\");\n    a++;\n} while (a < 2);\nint b = 0;\ndo {\n    System.out.print(\"B\");\n    b++;\n} while (b < 2);",
+      "options": [
+        "ABAB",
+        "AABB",
+        "Solo AA",
+        "No compila."
+      ],
+      "answer": 1,
+      "explanation": "El primer do-while termina antes de comenzar el segundo. Los dos funcionan de forma secuencial con sus propias variables y condiciones."
+    },
+    {
+      "id": "DGCQ075",
+      "topic": "Aleatoriedad",
+      "question": "Con Random importado, ¿cómo creamos un objeto llamado random?",
+      "code": "",
+      "options": [
+        "Random random = new Random();",
+        "new random = Random();",
+        "Random() random = random();",
+        "Random random = new random(System.in);"
+      ],
+      "answer": 0,
+      "explanation": "El constructor debe usar exactamente el nombre de la clase: Random. La variable random puede tener r minúscula."
+    },
+    {
+      "id": "DGCQ076",
+      "topic": "Matrices",
+      "question": "¿Por qué falla este recorrido de una matriz rectangular?",
+      "code": "char[][] matriz = new char[10][7];\nfor (int i = 0; i < matriz.length; i++) {\n    for (int j = 0; j < matriz.length; j++) {\n        matriz[i][j] = '*';\n    }\n}",
+      "options": [
+        "Porque Java solo permite matrices cuadradas.",
+        "Porque j llega a 7, fuera de las columnas 0..6.",
+        "Porque length se escribe con paréntesis.",
+        "Porque char no puede guardar *."
+      ],
+      "answer": 1,
+      "explanation": "El bucle interior debe usar j < matriz[i].length. matriz.length cuenta las 10 filas y no las 7 columnas."
+    },
+    {
+      "id": "DGCQ077",
+      "topic": "Matrices",
+      "question": "¿Cuántas casillas contiene esta matriz?",
+      "code": "char[][] matriz = new char[9][9];",
+      "options": [
+        "99",
+        "10",
+        "81",
+        "100"
+      ],
+      "answer": 2,
+      "explanation": "Es una matriz de nueve filas por nueve columnas: 9 × 9 = 81 casillas."
+    },
+    {
+      "id": "DGCQ078",
+      "topic": "Sintaxis",
+      "question": "Dentro de main y con estacion ya declarada, ¿qué falta en este fragmento para cerrar el for exterior?",
+      "code": "for (int fila = 0; fila < estacion.length; fila++) {\n    for (int columna = 0; columna < estacion.length; columna++) {\n        System.out.print(estacion[fila][columna] + \" \");\n    }\n    System.out.println();",
+      "options": [
+        "Una llave de cierre } al final.",
+        "Un import para for.",
+        "Cambiar println por Scanner.",
+        "No falta nada."
+      ],
+      "answer": 0,
+      "explanation": "Se abre una llave para cada for. Aquí solo se cierra el interior; falta cerrar el exterior para que el fragmento completo sea sintácticamente válido."
+    },
+    {
+      "id": "DGCQ079",
+      "topic": "Matrices",
+      "question": "¿Qué devuelve matriz.length en una matriz bidimensional no nula?",
+      "code": "",
+      "options": [
+        "El número total de elementos de la matriz.",
+        "El número de filas de la matriz.",
+        "El número de columnas de la primera fila.",
+        "El número de columnas de la matriz."
+      ],
+      "answer": 1,
+      "explanation": "Una matriz es un array de filas: su length da el número de filas. matriz[fila].length da la longitud de una fila concreta."
+    },
+    {
+      "id": "DGCQ080",
+      "topic": "Aleatoriedad",
+      "question": "Hay al menos cinco casillas libres entre las filas 0..8 y columnas 0..8 de un tablero 10×10. ¿Qué hace este fragmento?",
+      "code": "// aleatorio es Random; n1 y n2 son int\nfor (int i = 0; i < 5; i++) {\n    do {\n        n1 = aleatorio.nextInt(9);\n        n2 = aleatorio.nextInt(9);\n    } while (estacion[n1][n2] != '*');\n    estacion[n1][n2] = 'X';\n}",
+      "options": [
+        "Genera dos números aleatorios del 0 al 9 y evita que se sobreescriban las letras.",
+        "Genera dos números aleatorios del 0 al 10 y da igual si se sobreescriben.",
+        "Genera dos números aleatorios del 0 al 10 y evita que se sobreescriben las letras.",
+        "Coloca cinco X en coordenadas 0..8 sin sobrescribir casillas ocupadas."
+      ],
+      "answer": 3,
+      "explanation": "nextInt(9) genera 0..8: nunca elige la fila ni la columna 9. La comprobación evita sobrescribir casillas ocupadas. Cada asignación X queda dentro del for."
+    }
+  ]
+}
