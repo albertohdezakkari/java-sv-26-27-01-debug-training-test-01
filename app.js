@@ -3,7 +3,7 @@ const STORE = 'dbg01_attempt_v1';
 const SECONDS = 60;
 const TOTAL = 20;
 const ENDPOINT = 'https://script.google.com/macros/s/AKfycbzX9MQXPhHhkcKA9idKifON05j1IbxJhKAvXIvdj_N3F7H1lsiTGbdzREomAnCnMn-l/exec';
-const teacherRoute = /^\/test-profesor\/?$/.test(location.pathname);
+const teacherRoute = /\/test-profesor\/?$/.test(location.pathname);
 const MODES = {
   test: {label:'Test', title:'Repaso guiado', file:'data/test-questions.json', style:'test', intro:'Ve pregunta a pregunta y recibe una explicación después de cada respuesta.'},
   challenge: {label:'Challenge', title:'Reto contrarreloj', file:'data/challenge-questions.json', style:'challenge', intro:'Responde las 20 preguntas seguidas. Verás la revisión cuando termine el intento.'}
