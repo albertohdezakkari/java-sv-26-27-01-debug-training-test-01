@@ -16,3 +16,5 @@ La aplicación no muestra el listado de nombres del grupo. El alumno introduce e
 ## Revisión docente
 
 La portada incluye un modo de revisión docente que recorre las 80 preguntas sin temporizador ni registro de nota. En el test del alumnado, la respuesta y explicación quedan visibles hasta que se pulse «Siguiente».
+
+La revisión está en `/test-profesor/`, fuera de la portada del alumnado y marcada `noindex`. GitHub Pages es público y esa ruta no autentica al profesor; cualquiera que conozca la URL podrá abrirla. No debe tratarse como protección de respuestas.

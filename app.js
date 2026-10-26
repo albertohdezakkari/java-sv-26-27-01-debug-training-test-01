@@ -3,6 +3,7 @@ const STORE = 'dbg01_attempt_v1';
 const SECONDS = 60;
 const TOTAL = 20;
 const ENDPOINT = 'https://script.google.com/macros/s/AKfycbzX9MQXPhHhkcKA9idKifON05j1IbxJhKAvXIvdj_N3F7H1lsiTGbdzREomAnCnMn-l/exec';
+const teacherRoute = /^\/test-profesor\/?$/.test(location.pathname);
 const MODES = {
   test: {label:'Test', title:'Repaso guiado', file:'data/test-questions.json', style:'test', intro:'Ve pregunta a pregunta y recibe una explicación después de cada respuesta.'},
   challenge: {label:'Challenge', title:'Reto contrarreloj', file:'data/challenge-questions.json', style:'challenge', intro:'Responde las 20 preguntas seguidas. Verás la revisión cuando termine el intento.'}
@@ -17,15 +18,17 @@ function shell(content, extra=''){
 }
 function home(){
   clearInterval(timer); state=null; save();
+  if(teacherRoute){
+    shell(`<section class="hero"><div class="eyebrow">Acceso docente · revisión privada de trabajo</div><h1>Revisar el banco<br>de preguntas.</h1><p class="lead">Recorre las 80 preguntas sin temporizador ni registro de nota. Puedes probar respuestas, revisar las explicaciones y avanzar o volver cuando quieras.</p></section><section class="panel identity-form"><p class="help">Esta ruta está separada de la portada del alumnado. La dirección no tiene autenticación: quien conozca el enlace podrá abrirla.</p><button class="btn" id="teacher-review">Abrir revisión →</button></section>`);
+    APP.querySelector('#teacher-review').onclick=()=>teacherReview('test');return;
+  }
   shell(`<section class="hero"><div class="eyebrow">Entrenamiento de depuración · 80 preguntas</div><h1>Lee el código.<br>Encuentra el fallo.</h1><p class="lead">Practica con las preguntas creadas en clase. Elige un modo y dedica un minuto a cada pregunta.</p></section>
   <section class="mode-grid" aria-label="Elige el modo">
     ${Object.entries(MODES).map(([key,m])=>`<article class="mode-card ${m.style}"><div class="mode-top"><span class="mode-icon">${key==='test'?'01':'02'}</span><span class="mode-label">${key==='test'?'CON FEEDBACK':'SIN PISTAS'}</span></div><h2>${m.title}</h2><p>${m.intro}</p><div class="mode-foot"><span class="mode-meta">20 preguntas · 60 s / pregunta</span><button class="btn" data-mode="${key}">Empezar →</button></div></article>`).join('')}
   </section><p class="footnote">Cada intento contiene 20 preguntas aleatorias de un banco de 80. El servidor corrige las respuestas y registra la nota sobre 10. Un acierto suma 0,5 puntos; los errores no restan.</p>
-  <article class="mode-card teacher-card"><div class="eyebrow">Solo para el profesor</div><h2>Revisar las preguntas</h2><p>Recorre el banco completo sin temporizador ni registro de nota. Prueba respuestas y consulta la explicación.</p><div class="mode-foot"><span class="mode-meta">80 preguntas · a tu ritmo</span><button class="btn" id="teacher-review">Abrir revisión →</button></div></article>
   ${resumeAvailable()?`<article class="mode-card resume-card"><div class="eyebrow">Intento en curso</div><p>Este navegador conserva un intento sin terminar.</p><button class="btn" id="resume">Continuar intento →</button></article>`:''}`);
   APP.querySelectorAll('[data-mode]').forEach(b=>b.onclick=()=>identify(b.dataset.mode));
   const resume=APP.querySelector('#resume'); if(resume) resume.onclick=()=>{state=JSON.parse(localStorage.getItem(STORE));loadBank(state.mode).then(()=>renderQuestion());};
-  APP.querySelector('#teacher-review').onclick=()=>teacherReview('test');
 }
 async function teacherReview(mode){
   try{const data=await loadBank(mode);state={phase:'question',mode,quiz:data.quiz,teacher:true,studentInput:'Revisión docente',questions:data.questions,index:0,answers:[],times:[],deadline:null};renderQuestion();}
@@ -40,7 +43,8 @@ function identify(mode){
 }
 async function loadBank(mode){
   if(bank[mode])return bank[mode];
-  const res=await fetch(MODES[mode].file,{cache:'no-store'}); if(!res.ok)throw new Error('No se ha podido cargar el banco.');
+  const bankPath=teacherRoute?`../${MODES[mode].file}`:MODES[mode].file;
+  const res=await fetch(bankPath,{cache:'no-store'}); if(!res.ok)throw new Error('No se ha podido cargar el banco.');
   const data=await res.json();
   if(data.questions.length!==80||data.quiz!==`1SI-JAVA-DEBUG-${mode.toUpperCase()}-01`)throw new Error('El banco del cuestionario no es válido.');
   bank[mode]=data;return data;
@@ -121,7 +125,7 @@ async function submitResult(){
   }catch(e){state.registration={status:'failed',message:e.message};save();busy=false;showResult();const el=APP.querySelector('#register-status');if(el)el.innerHTML=`No se ha confirmado el registro: ${esc(e.message)}. Puedes reintentar el mismo envío sin duplicar la nota.`;}
 }
 window.addEventListener('storage',e=>{if(e.key===STORE&&e.newValue){try{state=JSON.parse(e.newValue);renderQuestion();}catch{}}});
-if(resumeAvailable()){
+if(!teacherRoute&&resumeAvailable()){
   state=JSON.parse(localStorage.getItem(STORE));
   loadBank(state.mode).then(()=>{if(state.deadline&&state.phase==='question'&&remaining()===0)choose(null);else if(state.phase==='feedback')renderQuestion();else if(state.phase==='sending'||state.phase==='result')showResult();else renderQuestion();}).catch(()=>home());
 }else home();
