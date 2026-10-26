@@ -11,3 +11,8 @@ La aplicación se sirve desde la raíz del repositorio. Activa GitHub Pages para
 Los identificadores de ambos modos y sus 80 preguntas activas deben estar configurados en `QUIZ_CONFIG` y `QUIZ_PREGUNTAS` de la hoja de evaluación de 1SI. La ruta de Apps Script valida el identificador del alumno, los 20 ítems, la duración y calcula la nota en el servidor. Cada intento usa un UUID para reconocer los reintentos de una respuesta y evitar filas duplicadas.
 
 La aplicación no muestra el listado de nombres del grupo. El alumno introduce el nombre y el servidor lo coteja con `ALUMNOS`.
+
+
+## Revisión docente
+
+La portada incluye un modo de revisión docente que recorre las 80 preguntas sin temporizador ni registro de nota. En el test del alumnado, la respuesta y explicación quedan visibles hasta que se pulse «Siguiente».

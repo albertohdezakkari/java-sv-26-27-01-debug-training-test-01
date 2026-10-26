@@ -21,9 +21,15 @@ function home(){
   <section class="mode-grid" aria-label="Elige el modo">
     ${Object.entries(MODES).map(([key,m])=>`<article class="mode-card ${m.style}"><div class="mode-top"><span class="mode-icon">${key==='test'?'01':'02'}</span><span class="mode-label">${key==='test'?'CON FEEDBACK':'SIN PISTAS'}</span></div><h2>${m.title}</h2><p>${m.intro}</p><div class="mode-foot"><span class="mode-meta">20 preguntas · 60 s / pregunta</span><button class="btn" data-mode="${key}">Empezar →</button></div></article>`).join('')}
   </section><p class="footnote">Cada intento contiene 20 preguntas aleatorias de un banco de 80. El servidor corrige las respuestas y registra la nota sobre 10. Un acierto suma 0,5 puntos; los errores no restan.</p>
+  <article class="mode-card teacher-card"><div class="eyebrow">Solo para el profesor</div><h2>Revisar las preguntas</h2><p>Recorre el banco completo sin temporizador ni registro de nota. Prueba respuestas y consulta la explicación.</p><div class="mode-foot"><span class="mode-meta">80 preguntas · a tu ritmo</span><button class="btn" id="teacher-review">Abrir revisión →</button></div></article>
   ${resumeAvailable()?`<article class="mode-card resume-card"><div class="eyebrow">Intento en curso</div><p>Este navegador conserva un intento sin terminar.</p><button class="btn" id="resume">Continuar intento →</button></article>`:''}`);
   APP.querySelectorAll('[data-mode]').forEach(b=>b.onclick=()=>identify(b.dataset.mode));
   const resume=APP.querySelector('#resume'); if(resume) resume.onclick=()=>{state=JSON.parse(localStorage.getItem(STORE));loadBank(state.mode).then(()=>renderQuestion());};
+  APP.querySelector('#teacher-review').onclick=()=>teacherReview('test');
+}
+async function teacherReview(mode){
+  try{const data=await loadBank(mode);state={phase:'question',mode,quiz:data.quiz,teacher:true,studentInput:'Revisión docente',questions:data.questions,index:0,answers:[],times:[],deadline:null};renderQuestion();}
+  catch(e){home();}
 }
 function resumeAvailable(){try{const s=JSON.parse(localStorage.getItem(STORE));return s&&['question','feedback','sending','result'].includes(s.phase)&&MODES[s.mode]&&Array.isArray(s.questions)&&s.questions.length===TOTAL;}catch{return false;}}
 function normalizeName(value){return value.normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/[^a-z0-9]+/g,' ').trim().split(/\s+/).filter(Boolean).sort().join(' ');}
@@ -51,28 +57,32 @@ async function start(mode){
 }
 function shuffle(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
 function remaining(){return Math.max(0,Math.ceil((state.deadline-Date.now())/1000));}
+function formatClock(seconds){return `0${Math.floor(seconds/60)}:${String(seconds%60).padStart(2,'0')}`;}
 function renderQuestion(){
   clearInterval(timer);
   if(!state||!MODES[state.mode])return home();
   if(state.phase==='result'||state.phase==='sending')return showResult();
-  const m=MODES[state.mode],q=state.questions[state.index],locked=state.phase==='feedback', selected=state.answers[state.index];
-  shell(`<header class="quiz-head"><div class="quiz-ident"><strong>${m.title}</strong><br>Nombre: ${esc(state.studentInput)}</div><span class="tag">${state.mode==='test'?'TEST':'CHALLENGE'}</span></header>
-    <div class="progress-wrap" aria-label="Progreso"><div class="progress ${state.mode==='challenge'?'challenge-progress':''}" style="width:${state.index/TOTAL*100}%"></div></div>
-    <section class="question-card"><div class="quiz-meta"><div class="meta-left"><span class="topic">${esc(q.topic.toUpperCase())}</span><br>PREGUNTA ${state.index+1} / ${TOTAL}</div><div class="timer ${remaining()<=10?'warn':''}" id="timer" role="timer" aria-label="Segundos restantes">01:${String(remaining()%60).padStart(2,'0')}</div></div>
+  const m=MODES[state.mode],q=state.questions[state.index],teacher=!!state.teacher,locked=state.phase==='feedback'&&!teacher, selected=state.answers[state.index];
+  shell(`<header class="quiz-head"><div class="quiz-ident"><strong>${m.title}</strong><br>Nombre: ${esc(state.studentInput)}</div><span class="tag">${teacher?'REVISIÓN DOCENTE':state.mode==='test'?'TEST':'CHALLENGE'}</span></header>
+    <div class="progress-wrap" aria-label="Progreso"><div class="progress ${state.mode==='challenge'?'challenge-progress':''}" style="width:${state.index/state.questions.length*100}%"></div></div>
+    <section class="question-card"><div class="quiz-meta"><div class="meta-left"><span class="topic">${esc(q.topic.toUpperCase())}</span><br>PREGUNTA ${state.index+1} / ${state.questions.length}</div>${teacher?'<div class="timer">A TU RITMO</div>':`<div class="timer ${remaining()<=10?'warn':''}" id="timer" role="timer" aria-label="Segundos restantes">${formatClock(remaining())}</div>`}</div>
     <h1 class="prompt">${esc(q.question)}</h1>${q.code?`<pre class="code"><code>${esc(q.code)}</code></pre>`:''}
-    <div class="options">${q.options.map((o,i)=>`<button class="option ${locked&&i===q.answer?'correct':''} ${locked&&selected===i&&selected!==q.answer?'wrong':''} ${!locked&&selected===i?'selected':''}" data-choice="${i}" ${locked?'disabled':''}><span class="option-key">${letters[i]}</span><span>${esc(o)}</span></button>`).join('')}</div>
-    ${locked?`<div class="feedback ${selected===q.answer?'':'bad'}"><strong>${selected===q.answer?'✓ Correcto.':'✕ Revisa esta pregunta.'}</strong><p>Respuesta correcta: <b>${letters[q.answer]} · ${esc(q.options[q.answer])}</b><br>${esc(q.explanation)}</p></div>`:''}
-    <div class="actions"><span class="small-muted">${state.mode==='test'?'La respuesta queda registrada al continuar.':'El resultado se mostrará al finalizar.'}</span>${locked?`<button class="btn" id="next">${state.index===TOTAL-1?'Ver resultado →':'Siguiente →'}</button>`:''}</div></section>`,state.mode);
-  if(locked){APP.querySelector('#next').onclick=advance;return;}
+    <div class="options">${q.options.map((o,i)=>`<button class="option ${(locked||teacher&&state.phase==='feedback')&&i===q.answer?'correct':''} ${(locked||teacher&&state.phase==='feedback')&&selected===i&&selected!==q.answer?'wrong':''} ${!locked&&selected===i?'selected':''}" data-choice="${i}" ${locked?'disabled':''}><span class="option-key">${letters[i]}</span><span>${esc(o)}</span></button>`).join('')}</div>
+    ${locked||teacher&&state.phase==='feedback'?`<div class="feedback ${selected===q.answer?'':'bad'}"><strong>${selected===q.answer?'✓ Correcto.':'✕ Incorrecto.'}</strong><p>Respuesta correcta: <b>${letters[q.answer]} · ${esc(q.options[q.answer])}</b><br>${esc(q.explanation)}</p></div>`:''}
+    <div class="actions"><span class="small-muted">${teacher?'Modo docente: puedes probar otra respuesta y avanzar cuando quieras.':state.mode==='test'?'Tómate un momento para revisar la explicación. Pulsa «Siguiente» cuando estés listo.':'El resultado se mostrará al finalizar.'}</span>${teacher?`<button class="btn secondary" id="prev" ${state.index===0?'disabled':''}>← Anterior</button><button class="btn" id="next">${state.index===state.questions.length-1?'Terminar revisión':'Siguiente →'}</button>`:locked?`<button class="btn" id="next">${state.index===TOTAL-1?'Ver resultado →':'Siguiente →'}</button>`:''}</div></section>`,state.mode);
+  if(teacher){APP.querySelector('#prev').onclick=()=>moveTeacher(-1);APP.querySelector('#next').onclick=()=>state.index===state.questions.length-1?home():moveTeacher(1);}
+  else if(locked){APP.querySelector('#next').onclick=advance;return;}
   APP.querySelectorAll('[data-choice]').forEach(b=>b.onclick=()=>choose(Number(b.dataset.choice)));
-  updateTimer();timer=setInterval(updateTimer,200);
+  if(!teacher){updateTimer();timer=setInterval(updateTimer,200);}
 }
+function moveTeacher(delta){state.index=Math.max(0,Math.min(state.questions.length-1,state.index+delta));state.phase=state.answers[state.index]===undefined?'question':'feedback';renderQuestion();window.scrollTo(0,0);}
 function updateTimer(){
   if(state?.phase!=='question')return;
-  const s=remaining(),node=APP.querySelector('#timer');if(node){node.textContent=`00:${String(s).padStart(2,'0')}`;node.classList.toggle('warn',s<=10);}
+  const s=remaining(),node=APP.querySelector('#timer');if(node){node.textContent=formatClock(s);node.classList.toggle('warn',s<=10);}
   if(s===0)choose(null);
 }
 function choose(index){
+  if(state?.teacher){state.answers[state.index]=index;state.phase='feedback';renderQuestion();return;}
   if(state?.phase!=='question')return;
   clearInterval(timer);const left=remaining(),q=state.questions[state.index];
   state.answers[state.index]=left===0?null:index;state.times[state.index]=SECONDS-left;
